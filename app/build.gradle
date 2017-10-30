@@ -17,11 +17,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    testOptions {
+//        unitTests.all {
+//            systemProperty 'http.proxyHost', 'proxy-sg-singapore.gemalto.com'
+//            systemProperty 'https.proxyPort', '8080'
+//            systemProperty 'https.proxyHost', 'proxy-sg-singapore.gemalto.com'
+//            systemProperty 'http.proxyPort', '8080'
+//        }
+//    }
+//    tasks.withType(Test) {
+//        systemProperty 'http.proxyHost', 'proxy-sg-singapore.gemalto.com'
+//        systemProperty 'https.proxyPort', '8080'
+//        systemProperty 'https.proxyHost', 'proxy-sg-singapore.gemalto.com'
+//        systemProperty 'http.proxyPort', '8080'
+//    }
+    tasks.withType(Test) {
+        systemProperty 'http.proxyHost', 'sin2.sme.zscalertwo.net'
+        systemProperty 'https.proxyPort', '80'
+        systemProperty 'https.proxyHost', 'sin2.sme.zscalertwo.net'
+        systemProperty 'http.proxyPort', '80'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/" }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.+'
